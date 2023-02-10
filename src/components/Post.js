@@ -2,8 +2,10 @@ import { useState } from "react";
 
 export default function Post (props){
 
-  const [salvarVazio, setSalvarvazio] = useState ("");
-  const [salvarCheio, setSalvarCheio] = useState ("esconder-icon");
+  /* const [salvarVazio, setSalvarvazio] = useState ("");
+  const [salvarCheio, setSalvarCheio] = useState ("esconder-icon"); */
+
+  const [salvar, setSalvar] = useState("bookmark-outline");
 
   const [curtidas, setCurtidas] = useState(props.curtidas);
   
@@ -12,14 +14,16 @@ export default function Post (props){
 
   function salvarPost(){
 
-    if(salvarVazio === "esconder-icon"){
+    setSalvar(salvar === "bookmark-outline"? "bookmark" : "bookmark-outline");
+
+    /* if(salvarVazio === "esconder-icon"){
       setSalvarCheio("esconder-icon");
       setSalvarvazio("");
     }
     else{
       setSalvarCheio("");
       setSalvarvazio("esconder-icon");
-    }    
+    }     */
 }
 
   function curtirPost(){
@@ -80,14 +84,12 @@ export default function Post (props){
       <div class="acoes">
         <div>
           <ion-icon data-test="like-post" onClick = {curtirPost} class={like} name={iconeCoracao}></ion-icon>
-          {/* <ion-icon data-test="link-post" onClick = {curtirPost} class={like} name="heart"></ion-icon> */}
-
           <ion-icon name="chatbubble-outline"></ion-icon>
           <ion-icon name="paper-plane-outline"></ion-icon>
         </div>
         <div>
-          <ion-icon data-test="save-post" onClick = {salvarPost} class={salvarCheio} name="bookmark"></ion-icon>
-          <ion-icon data-test="save-post" onClick = {salvarPost} class={salvarVazio}  name="bookmark-outline"></ion-icon>
+          <ion-icon data-test="save-post" onClick = {salvarPost} name={salvar}></ion-icon>
+          {/* <ion-icon data-test="save-post" onClick = {salvarPost} class={salvarVazio}  name="bookmark-outline"></ion-icon> */}
 
         </div>
       </div>
