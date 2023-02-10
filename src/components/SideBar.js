@@ -2,12 +2,12 @@
 import Usuario from "./Usuario";
 import Sugestoes from "./Sugestoes";
 
-
 export default function SideBar(){
+
 
     return(
         <div class="sidebar">
-            <Usuario/>
+            <Usuario imagem ="assets/img/catanacomics.svg"  nome = "catanacomics"  />
 
             <Sugestoes/>
 

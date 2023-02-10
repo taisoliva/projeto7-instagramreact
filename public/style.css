@@ -304,5 +304,12 @@
     padding-top: 5px;
     color: black;
   }
+
+.esconder-icon{
+  display: none;
+}
   
+.like{
+  color: red;
+}
   

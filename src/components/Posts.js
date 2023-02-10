@@ -1,47 +1,50 @@
 
 import Post from "./Post";
 
+
+const posties = [
+    {
+        imagem:"assets/img/meowed.svg",
+        texto:"meowed", 
+        foto:"assets/img/gato-telefone.svg",
+        perfil:"respondeai" ,
+        perfilFoto : "assets/img/respondeai.svg",
+        curtidas: 101.523 ,
+        alt:"gato-telefone"
+    },
+
+    {
+        imagem:"assets/img/barked.svg", 
+        texto:"barked" ,
+        foto:"assets/img/dog.svg" ,
+        perfil:"adorable_animals" ,
+        perfilFoto : "assets/img/adorable_animals.svg",
+        curtidas:99.159,
+        alt:"dog"
+    },
+
+    {
+        imagem:"http://localhost:3000/assets/img/respondeai.svg", 
+        texto:"respondeai" ,
+        foto:"https://i.pinimg.com/originals/25/55/9a/25559a1afd4c829297d9701713497a9a.jpg" ,
+        perfil:"barked" ,
+        perfilFoto : "http://localhost:3000/assets/img/barked.svg",
+        curtidas:159.891 ,
+        alt:"dog"
+    }
+
+]
+
 export default function Posts(){
     
     return ( <div class="posts">
    
-   <Post imagem="assets/img/meowed.svg" texto="meowed" perfil="respondeai" curtidas="outras 101.523 pessoas"/> 
-   
-
-    <div class="post">
-      <div class="topo">
-        <div class="usuario">
-          <img src="assets/img/barked.svg" alt="barked"/>
-          barked
-        </div>
-        <div class="acoes">
-          <ion-icon name="ellipsis-horizontal"></ion-icon>
-        </div>
-      </div>
-
-      <div class="conteudo">
-        <img src="assets/img/dog.svg" alt="dog" />
-      </div>
-
-      <div class="fundo">
-        <div class="acoes">
-          <div>
-            <ion-icon name="heart-outline"></ion-icon>
-            <ion-icon name="chatbubble-outline"></ion-icon>
-            <ion-icon name="paper-plane-outline"></ion-icon>
-          </div>
-          <div>
-            <ion-icon name="bookmark-outline"></ion-icon>
-          </div>
-        </div>
-
-        <div class="curtidas">
-          <img src="assets/img/adorable_animals.svg" alt="adorable_animals"/>
-          <div class="texto">
-            Curtido por <strong>adorable_animals</strong> e <strong>outras 99.159 pessoas</strong>
-          </div>
-        </div>
-      </div>
-    </div>
+    {posties.map((p) => <Post imagem={p.imagem} 
+                              texto={p.texto} 
+                              foto={p.foto} 
+                              perfil={p.perfil} 
+                              perfilFoto = {p.perfilFoto} 
+                              curtidas = {p.curtidas}
+                              alt = {p.alt}/>)}
   </div>);
 }

@@ -1,5 +1,72 @@
+import { useState } from "react";
 
 export default function Post (props){
+
+  let travarClick = false;
+
+  const [salvarVazio, setSalvarvazio] = useState ("");
+  const [salvarCheio, setSalvarCheio] = useState ("esconder-icon");
+
+  const [semLike, setSemLike] = useState("");
+  const [like, setLike] = useState("esconder-icon like");
+
+  const [curtidas, setCurtidas] = useState(props.curtidas);
+
+  function salvarPost(){
+
+    if(salvarVazio === "esconder-icon"){
+      setSalvarCheio("esconder-icon");
+      setSalvarvazio("");
+    }
+    else{
+      setSalvarCheio("");
+      setSalvarvazio("esconder-icon");
+    }    
+}
+
+  function curtirPost(){
+
+    if(semLike === ""){
+      setSemLike("esconder-icon");
+      setLike("like");
+
+      let parteInteira = curtidas.toString().split('.')[0];
+      let parteDecimal = Number(curtidas.toString().split('.')[1]);
+
+      parteDecimal = parteDecimal + 1;
+      setCurtidas(parteInteira + '.' + (parteDecimal.toString()));
+
+    } else {
+
+      setSemLike("");
+      setLike("esconder-icon like");
+
+      let parteInteira = curtidas.toString().split('.')[0];
+      let parteDecimal = Number(curtidas.toString().split('.')[1]);
+
+      parteDecimal = parteDecimal - 1;
+      setCurtidas(parteInteira + '.' + (parteDecimal.toString()));
+    }
+  }
+
+  function curtirPostFoto (){
+
+    if(like === "esconder-icon like"){
+      let parteInteira = curtidas.toString().split('.')[0];
+      let parteDecimal = Number(curtidas.toString().split('.')[1]);
+
+      parteDecimal = parteDecimal + 1;
+      setCurtidas(parteInteira + '.' + (parteDecimal.toString()));
+    }
+    
+    setSemLike("esconder-icon");
+    setLike("like");
+
+    
+    
+
+  }
+
     return ( <div class="post">
     <div class="topo">
       <div class="usuario">
@@ -12,25 +79,29 @@ export default function Post (props){
     </div>
 
     <div class="conteudo">
-      <img src="assets/img/gato-telefone.svg" alt="gato-telefone"/>
+      <img onClick = {curtirPostFoto} src={props.foto} alt={props.alt}/>
     </div>
 
     <div class="fundo">
       <div class="acoes">
         <div>
-          <ion-icon name="heart-outline"></ion-icon>
+          <ion-icon onClick = {curtirPost} class={semLike} name="heart-outline"></ion-icon>
+          <ion-icon onClick = {curtirPost} class={like} name="heart"></ion-icon>
+
           <ion-icon name="chatbubble-outline"></ion-icon>
           <ion-icon name="paper-plane-outline"></ion-icon>
         </div>
         <div>
-          <ion-icon name="bookmark-outline"></ion-icon>
+          <ion-icon onClick = {salvarPost} class={salvarCheio} name="bookmark"></ion-icon>
+          <ion-icon onClick = {salvarPost} class={salvarVazio}  name="bookmark-outline"></ion-icon>
+
         </div>
       </div>
 
       <div class="curtidas">
-        <img src="assets/img/respondeai.svg" alt="respondeai"/>
+        <img src={props.perfilFoto} alt={props.perfil}/>
         <div class="texto">
-          Curtido por <strong>{props.perfil}</strong> e <strong>{props.curtidas}</strong>
+          Curtido por <strong>{props.perfil}</strong> e <strong> outras {curtidas} pessoas</strong>
         </div>
       </div>
     </div>
