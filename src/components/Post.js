@@ -12,6 +12,8 @@ export default function Post (props){
   const [like, setLike] = useState("");
   const [iconeCoracao, setIconeCoracao] = useState("heart-outline")
 
+  const [animacao, setAnimacao] = useState("esconder");
+
   function salvarPost(){
 
     setSalvar(salvar === "bookmark-outline"? "bookmark" : "bookmark-outline");
@@ -59,10 +61,16 @@ export default function Post (props){
 
       parteDecimal = parteDecimal + 1;
       setCurtidas(parteInteira + '.' + (parteDecimal.toString()));
+
+      setAnimacao("animacao");
+
+      setTimeout(() => {setAnimacao("esconder")}, 1000);
     }
     
+
     setIconeCoracao("heart");
     setLike("like");
+
   }
 
     return ( <div data-test="post" class="post">
@@ -77,7 +85,8 @@ export default function Post (props){
     </div>
 
     <div class="conteudo">
-      <img data-test="post-image" onClick = {curtirPostFoto} src={props.foto} alt={props.alt}/>
+      <img data-test="post-image" onDoubleClick = {curtirPostFoto} src={props.foto} alt={props.alt}/>
+      <ion-icon class={animacao} name="heart"></ion-icon>
     </div>
 
     <div class="fundo">

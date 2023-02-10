@@ -304,12 +304,48 @@
     padding-top: 5px;
     color: black;
   }
-
-.esconder-icon{
-  display: none;
-}
   
 .like{
   color: red;
 }
+
+
   
+.conteudo{
+  position: relative;
+}
+
+.esconder{
+  display: none;
+}
+
+@keyframes efeito-coracao {
+
+  from{
+    transform:scale(0.2) ;
+  }
+
+  to{
+    transform:scale(1) ;
+  }
+  
+}
+
+.conteudo ion-icon{
+  font-size:150px;
+  position: absolute;
+  top:40%;
+  left: 40%;
+  z-index: 1;
+
+  /*transform: translate(-50%,-50%);*/
+  transition: all 0.3s;
+  color:white;
+}
+
+.animacao{
+  animation-name: efeito-coracao;
+  animation-duration: 0.3s;
+}
+
+
