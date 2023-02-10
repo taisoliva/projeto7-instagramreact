@@ -5,10 +5,10 @@ export default function Post (props){
   const [salvarVazio, setSalvarvazio] = useState ("");
   const [salvarCheio, setSalvarCheio] = useState ("esconder-icon");
 
-  const [semLike, setSemLike] = useState("");
-  const [like, setLike] = useState("esconder-icon like");
-
   const [curtidas, setCurtidas] = useState(props.curtidas);
+  
+  const [like, setLike] = useState("");
+  const [iconeCoracao, setIconeCoracao] = useState("heart-outline")
 
   function salvarPost(){
 
@@ -24,8 +24,8 @@ export default function Post (props){
 
   function curtirPost(){
 
-    if(semLike === ""){
-      setSemLike("esconder-icon");
+    if(like === ""){
+      setIconeCoracao("heart");
       setLike("like");
 
       let parteInteira = curtidas.toString().split('.')[0];
@@ -33,23 +33,23 @@ export default function Post (props){
 
       parteDecimal = parteDecimal + 1;
       setCurtidas(parteInteira + '.' + (parteDecimal.toString()));
+    }
 
-    } else {
+    else{
+      setIconeCoracao("heart-outline");
+      setLike("");
 
-      setSemLike("");
-      setLike("esconder-icon like");
+        let parteInteira = curtidas.toString().split('.')[0];
+        let parteDecimal = Number(curtidas.toString().split('.')[1]);
 
-      let parteInteira = curtidas.toString().split('.')[0];
-      let parteDecimal = Number(curtidas.toString().split('.')[1]);
-
-      parteDecimal = parteDecimal - 1;
-      setCurtidas(parteInteira + '.' + (parteDecimal.toString()));
+        parteDecimal = parteDecimal - 1;
+        setCurtidas(parteInteira + '.' + (parteDecimal.toString()));
     }
   }
 
   function curtirPostFoto (){
 
-    if(like === "esconder-icon like"){
+    if(like !== "like"){
       let parteInteira = curtidas.toString().split('.')[0];
       let parteDecimal = Number(curtidas.toString().split('.')[1]);
 
@@ -57,12 +57,8 @@ export default function Post (props){
       setCurtidas(parteInteira + '.' + (parteDecimal.toString()));
     }
     
-    setSemLike("esconder-icon");
+    setIconeCoracao("heart");
     setLike("like");
-
-    
-    
-
   }
 
     return ( <div data-test="post" class="post">
@@ -83,7 +79,7 @@ export default function Post (props){
     <div class="fundo">
       <div class="acoes">
         <div>
-          <ion-icon data-test="link-post" onClick = {curtirPost} class={semLike} name="heart-outline"></ion-icon>
+          <ion-icon data-test="like-post" onClick = {curtirPost} class={like} name={iconeCoracao}></ion-icon>
           {/* <ion-icon data-test="link-post" onClick = {curtirPost} class={like} name="heart"></ion-icon> */}
 
           <ion-icon name="chatbubble-outline"></ion-icon>
