@@ -2,8 +2,6 @@ import { useState } from "react";
 
 export default function Post (props){
 
-  let travarClick = false;
-
   const [salvarVazio, setSalvarvazio] = useState ("");
   const [salvarCheio, setSalvarCheio] = useState ("esconder-icon");
 
@@ -67,7 +65,7 @@ export default function Post (props){
 
   }
 
-    return ( <div class="post">
+    return ( <div data-test="post" class="post">
     <div class="topo">
       <div class="usuario">
         <img src={props.imagem} alt={props.texto}/>
@@ -79,21 +77,21 @@ export default function Post (props){
     </div>
 
     <div class="conteudo">
-      <img onClick = {curtirPostFoto} src={props.foto} alt={props.alt}/>
+      <img data-test="post-image" onClick = {curtirPostFoto} src={props.foto} alt={props.alt}/>
     </div>
 
     <div class="fundo">
       <div class="acoes">
         <div>
-          <ion-icon onClick = {curtirPost} class={semLike} name="heart-outline"></ion-icon>
-          <ion-icon onClick = {curtirPost} class={like} name="heart"></ion-icon>
+          <ion-icon data-test="link-post" onClick = {curtirPost} class={semLike} name="heart-outline"></ion-icon>
+          <ion-icon data-test="link-post" onClick = {curtirPost} class={like} name="heart"></ion-icon>
 
           <ion-icon name="chatbubble-outline"></ion-icon>
           <ion-icon name="paper-plane-outline"></ion-icon>
         </div>
         <div>
-          <ion-icon onClick = {salvarPost} class={salvarCheio} name="bookmark"></ion-icon>
-          <ion-icon onClick = {salvarPost} class={salvarVazio}  name="bookmark-outline"></ion-icon>
+          <ion-icon data-test="save-post" onClick = {salvarPost} class={salvarCheio} name="bookmark"></ion-icon>
+          <ion-icon data-test="save-post" onClick = {salvarPost} class={salvarVazio}  name="bookmark-outline"></ion-icon>
 
         </div>
       </div>
@@ -101,7 +99,7 @@ export default function Post (props){
       <div class="curtidas">
         <img src={props.perfilFoto} alt={props.perfil}/>
         <div class="texto">
-          Curtido por <strong>{props.perfil}</strong> e <strong> outras {curtidas} pessoas</strong>
+          Curtido por <strong>{props.perfil}</strong> e <strong data-test="likes-number"> outras {curtidas} pessoas</strong>
         </div>
       </div>
     </div>

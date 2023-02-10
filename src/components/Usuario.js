@@ -27,11 +27,11 @@ export default function Usuario(props){
 
     return (
         <div class="usuario">
-          <img onClick={mudarImagem} src={imagemUsuario} alt={nomeUsuario}/>
+          <img data-test="profile-image" onClick={mudarImagem} src={imagemUsuario} alt={nomeUsuario}/>
           <div class="texto">
             <span>
-              <strong>{nomeUsuario}</strong>
-              <ion-icon onClick={mudarNome} name="pencil"></ion-icon>
+              <strong data-test="name" >{nomeUsuario}</strong>
+              <ion-icon data-test="edit-name" onClick={mudarNome} name="pencil"></ion-icon>
             </span>
           </div>
         </div>
